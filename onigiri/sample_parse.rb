@@ -4,7 +4,7 @@ require 'open-uri'
 require 'nokogiri'
 
 # スクレイピング先のURL
-url = 'http://www.yahoo.co.jp/'
+url = 'https://www.microad.co.jp/'
 
 charset = nil
 html = open(url) do |f|
