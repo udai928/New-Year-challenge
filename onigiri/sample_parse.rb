@@ -1,19 +1,20 @@
-# URLにアクセスするためのライブラリの読み込み
 require 'open-uri'
-# Nokogiriライブラリの読み込み
 require 'nokogiri'
 
-# スクレイピング先のURL
-url = 'https://www.microad.co.jp/'
+url = 'https://www.microad.co.jp'
 
 charset = nil
 html = open(url) do |f|
-  charset = f.charset # 文字種別を取得
-  f.read # htmlを読み込んで変数htmlに渡す
+  charset = f.charset
+  f.read
 end
 
-# htmlをパース(解析)してオブジェクトを生成
 doc = Nokogiri::HTML.parse(html, nil, charset)
 
-# タイトルを表示
-p doc.title
+doc.css('a').each do |anchor|
+  if anchor[:href].index("http") then
+    p anchor[:href]
+  else
+    p url + anchor[:href]
+  end
+end
