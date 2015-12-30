@@ -1,5 +1,9 @@
 require 'open-uri'
 require 'nokogiri'
+require 'benchmark'
+
+start_time = Time.now()
+p start_time
 
 url = 'https://www.microad.co.jp'
 
@@ -18,3 +22,6 @@ doc.css('a').each do |anchor|
     p url + anchor[:href]
   end
 end
+
+p Time.now()
+p "Processing time is #{Time.now - start_time}s"
